@@ -1,0 +1,47 @@
+body{
+    font-family: 'Montserrat'; font-size: 17.5px;
+    background: rgb(153,34,37);
+    background: radial-gradient(circle, rgba(153,34,37,1) 0%, rgba(29,28,27,1) 81%, rgba(29,28,27,1) 100%);
+}
+#underline:hover{
+
+    text-decoration: underline;
+}
+
+
+/* Caixa Button */
+button:hover{
+  background-color: #1d1c1b;
+  cursor: pointer;
+}
+#btanimation{
+  position: relative;
+  top: 0;
+  transition: all .2s ease-in-out
+}
+#btanimation:hover{
+  top: -4px;
+  box-shadow: 0 4px 3px #999
+}
+.btn-danger{
+  background-color:#992225;
+    border: none;
+    padding: 10px;
+    width: 150px;
+    border-radius: 50px;
+    color: white;
+    font-size: 15px;;
+}
+
+
+/* Estrelas Avaliação */
+.estrelas input[type=radio]{
+	display: none;
+
+}.estrelas label i.fa:before{
+	content: '\f005';
+	color: #FC0;
+}.estrelas  input[type=radio]:checked  ~ label i.fa:before{
+	color: #CCC;
+}
+ 
