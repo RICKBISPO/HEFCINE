@@ -30,7 +30,7 @@ HEFCINE é um site de avaliação de filmes e séries, onde os usuários podem s
 
 ## Autores 
 
-- 
+- [Henrique](https://github.com/RICKBISPO)
 - 
 - 
 
