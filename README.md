@@ -2,7 +2,7 @@
 
 HEFCINE é um site de avaliação de filmes e séries, onde os usuários podem se registrar e dar suas opiniões sobre as produções disponíveis. Os usuários podem comentar, avaliar e assistir aos trailers dos filmes ou séries.
 
-## Funcionalidades
+## Funcionalidades 👋
 
 - **Registro de usuários:** Os usuários podem criar uma conta no HEFCINE, fornecendo um nome de usuário e senha.
 
@@ -14,13 +14,13 @@ HEFCINE é um site de avaliação de filmes e séries, onde os usuários podem s
 
 - **Trailers:** Os usuários podem assistir aos trailers dos filmes ou séries disponíveis.
 
-## Tecnologias Utilizadas
+## Tecnologias Utilizadas 👨‍💻
 
 - HTML, CSS e PHP para a interface do usuário.
 
 - Banco de dados MySQL para armazenar as informações dos usuários e das produções.
 
-## Executando o projeto
+## Executando o projeto 🚀
 
 - Importe o banco de dados do arquivo hefcinedb.sql.
 
@@ -28,7 +28,7 @@ HEFCINE é um site de avaliação de filmes e séries, onde os usuários podem s
 
 - Acesse o HEFCINE em seu navegador em http://localhost/nome-do-diretorio-do-projeto/
 
-## Autores
+## Autores 
 
 - 
 - 
