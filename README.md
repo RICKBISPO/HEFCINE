@@ -14,5 +14,25 @@ HEFCINE é um site de avaliação de filmes e séries, onde os usuários podem s
 
 - **Trailers:** Os usuários podem assistir aos trailers dos filmes ou séries disponíveis.
 
+## Tecnologias Utilizadas
 
+- HTML, CSS e PHP para a interface do usuário.
+
+- Banco de dados MySQL para armazenar as informações dos usuários e das produções.
+
+## Executando o projeto
+
+- Importe o banco de dados do arquivo hefcinedb.sql.
+
+- Coloque o diretório do projeto em um servidor local como XAMPP ou WAMP.
+
+- Acesse o HEFCINE em seu navegador em http://localhost/nome-do-diretorio-do-projeto/
+
+## Autores
+
+- 
+- 
+- 
+
+<br><br>
 ![hefcinelogo2](https://user-images.githubusercontent.com/85528622/197913263-2b6a72a2-9d84-4733-805a-ce168f07fb3e.png)
