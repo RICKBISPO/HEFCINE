@@ -22,11 +22,11 @@ HEFCINE é um site de avaliação de filmes e séries, onde os usuários podem s
 
 ## Executando o projeto 🚀
 
-- Importe o banco de dados do arquivo hefcinedb.sql.
+1. Importe o banco de dados do arquivo hefcinedb.sql.
 
-- Coloque o diretório do projeto em um servidor local como XAMPP ou WAMP.
+2. Coloque o diretório do projeto em um servidor local como XAMPP ou WAMP.
 
-- Acesse o HEFCINE em seu navegador em ***[ http://localhost/nome-do-diretorio-do-projeto/ ]***
+3. Acesse o HEFCINE em seu navegador em ***[ http://localhost/nome-do-diretorio-do-projeto/ ]***
 
 ## Autores 
 
