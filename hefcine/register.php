@@ -1,5 +1,5 @@
 <?php
-require_once "configlogin.php";
+require_once "php/configlogin.php";
  
 //Definir usuario e senha como vazio
 $username = $password = $confirm_password = "";
@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <head>
         <meta charset="UTF-8">
         <title>HEFcine - Cadastro</title>
-        <link rel="stylesheet" href="stylelogs.css">
+        <link rel="stylesheet" href="css/stylelogs.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <link rel="icon" type="image/x-icon" href="imghef/hefcinelogo.png">
     </head>

@@ -1,28 +1,23 @@
 <?php
-    // Inicialize a sessão
-    session_start();
-    
-    // Verifique se o usuário está logado, se não, redirecione-o para uma página de login
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-        header("location: login.php");
-        exit;
-    }
-?>
+  // Inicialize a sessão
+  include ('php/config.php');
+  include ('php/comentarioFilme.php');
+  include ('php/funcoes.php');
+  session_start();
+  date_default_timezone_set('America/Sao_Paulo');   
 
-<?php       
-  include 'comentarioFilme.php';
-  date_default_timezone_set('America/Sao_Paulo');
-?>
 
-<?php
-  include_once('config.php');
 
+
+  // Verifique se o usuário está logado, se não, redirecione-o para uma página de login
+  verificarLogado();
+
+  // Verifique se o id esta correto, se nao redireciona para a pagina index
   if(isset($_GET['id']) && is_numeric(base64_decode($_GET['id']))){
     $id = base64_decode($_GET['id']);
     $_SESSION["id_filme_serie"] = $id;
-  } 
-  else {
-    header('Location: welcome.php');
+  } else {
+    header('Location: index.php');
   }
 
   $query = mysqli_query($conexao,"select * from filmeserie where tipo= 'filme' and idFilmeSerie = $id");
@@ -35,50 +30,44 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="stylemain.css">
+    <link rel="stylesheet" href="css/stylemain.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="imghef/hefcinelogo.png">
-    <title>HEFcine - Descrição do Filme</title>
+    <title>HEFcine - Descrição da Série</title>
   </head>
   <body>
 
     <!---NAVBAR-->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #862123; padding-left: 20px;">
-      <div class="container-fluid">
-        <nav class="navbar">
-          <a  href="welcome.php">
-          <img src="imghef/hefcinelogo2.png" width="75" height="50" alt="HEFCINE ">
-          </a>
-        </nav>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item " >
-              <a class="nav-link" id="underline" href="welcome.php" style="color: white; padding-left: 25px;">Página Inicial</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="underline" href="ListaFilme.php" style="color: white">Filmes</a>
-            </li>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="underline" href="ListaSerie.php" style="color: white">Séries</a>
-            </li>
-            </li> 
-          </ul>
-          <div class="dropdown dropstart">
-            <a class="navbar-brand dropdown-toggle" href="#" data-bs-toggle="dropdown" style="padding-left: 20px;">
-              <img src="imghef/suspeito.png" alt="Perfil" style="width:40px;" class="rounded-circle" title="<?php echo $_SESSION["id"]; ?>" >
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-              <li><a class="dropdown-item" href="logout.php">Sair da conta</a></li>
-            </ul>
-          </div>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <a href="index.php" ><img src="imghef/hefcinelogo2.png" class="logo" alt="HEFCINE "></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" id="underline" href="index.php"  style="color: white; padding-left: 25px;">Página Inicial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="underline" href="ListaFilme.php" style="color: white">Filmes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="underline" href="ListaSerie.php"  style="color: white">Séries</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+      <div class="dropdown dropstart">
+          <a class="navbar-brand dropdown-toggle" href="#" data-bs-toggle="dropdown" style="padding-left: 20px;">
+              <img src="imghef/suspeito.png" alt="Perfil" style="width:40px;" class="rounded-circle" title="<?php echo $_SESSION["id"]; ?>" >
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+              <li><a class="dropdown-item" href="logout.php">Sair da conta</a></li>
+          </ul>
+      </div>
+    </div>
+  </nav>
 
     <!-- Conteúdo do site--> 
     <div class="container" style="background-color: #e5edf0; padding-bottom: 300px; padding-top: 40px; padding-left: 40px;">
@@ -93,9 +82,8 @@
           <p><img src='imghef/<?php echo $dados['faixaEtaria']?>'></p>
           <p><strong>Elenco: </strong><?php echo $dados['elenco']?></p>
           <p><strong>Diretor: </strong><?php echo $dados['diretor']?></p>
-          <p><strong>Duração: </strong><?php echo $dados['duracao']?></p>
+          <p><strong>Número de temporadas: </strong><?php echo $dados['duracao']?></p>
           <p><strong>Data de Lançamento: </strong><?php echo $dados['dataLancamento']?></p>
-          <p><strong>Bilheteria: </strong><?php echo $dados['bilheteria']?></p>
           <p><strong>Avaliação:</strong>
             <?php
               $query="select AVG(qnt_estrela) as avgEstrela from pontuacao where FilmeSerie_idFilme='$id' ";
@@ -109,9 +97,9 @@
         </div>
       </div><br>
 
-      <!--TRAILER DO FILME-->
+      <!--TRAILER DA SERIE-->
       <div style="text-align: center;">
-        <h3 >TRAILER DO FILME</h3>
+        <h3 >TRAILER DA SÉRIE</h3>
         <BR>
         <iframe width="1000" height="600"  src="<?php echo $dados['trailer']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div><br><br><br>
@@ -165,24 +153,7 @@
 
       <!--Exibir comentarios--> 
       <?php
-        ob_start();
-          include_once('config.php');
-          // ajustando a instruçăo select para ordenar por produto
-          $query = mysqli_query($conexao,"select * from comentario where FilmeSerie_idFilme=$id order by created DESC;");
-      
-          if (!$query) {
-              die('Query Inválida: ' . @mysqli_error($conexao));  
-          }
-      
-          while($dados=mysqli_fetch_array($query)) 
-          {
-              echo "<div class='comment-box'><p>";
-              echo "<p class='usuario'><strong>".(ucfirst($dados['Usuarios_username']))."</strong></p>";
-              echo $dados['comentario']."<br><br>";
-              $date = new DateTime($dados['created']);
-              echo "<p class='horario'>".$date->format('d/m/Y H:i')."</p>";
-              echo "</p></div>";
-          }                
+        exibirComentarios($conexao, $id);         
       ?>
     </div>
 

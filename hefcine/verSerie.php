@@ -1,28 +1,21 @@
 <?php
-    // Inicialize a sessão
-    session_start();
-    
-    // Verifique se o usuário está logado, se não, redirecione-o para uma página de login
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-        header("location: login.php");
-        exit;
-    }
-?>
+  // Inicialize a sessão
+  include ('php/config.php');
+  include ('php/comentarioSerie.php');
+  include ('php/funcoes.php');
+  session_start();
+  date_default_timezone_set('America/Sao_Paulo');   
 
-<?php       
-  include 'comentarioSerie.php';
-  date_default_timezone_set('America/Sao_Paulo');
-?>
+  // Verifique se o usuário está logado, se não, redirecione-o para uma página de login
+  verificarLogado();
 
-<?php
-  include_once('config.php');
 
   if(isset($_GET['id']) && is_numeric(base64_decode($_GET['id']))){
     $id = base64_decode($_GET['id']);
     $_SESSION["id_filme_serie"] = $id;
   } 
   else {
-    header('Location: welcome.php');
+    header('Location: index.php');
   }
 
   $query = mysqli_query($conexao,"select * from filmeserie where tipo= 'serie' and idFilmeSerie = $id");
@@ -35,7 +28,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="stylemain.css">
+    <link rel="stylesheet" href="css/stylemain.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="imghef/hefcinelogo.png">
@@ -44,43 +37,35 @@
   <body>
 
     <!---NAVBAR-->
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #862123; padding-left: 20px;">
-      <div class="container-fluid">
-        <nav class="navbar">
-          <a  href="welcome.php">
-          <img src="imghef/hefcinelogo2.png" width="75" height="50" alt="HEFCINE ">
-          </a>
-        </nav>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item " >
-              <a class="nav-link" id="underline" href="welcome.php" style="color: white; padding-left: 25px;">Página Inicial</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="underline" href="ListaFilme.php" style="color: white">Filmes</a>
-            </li>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="underline" href="ListaSerie.php" style="color: white">Séries</a>
-            </li>
-            </li> 
-          </ul>
-          <div class="dropdown dropstart">
-            <a class="navbar-brand dropdown-toggle" href="#" data-bs-toggle="dropdown" style="padding-left: 20px;">
-              <img src="imghef/suspeito.png" alt="Perfil" style="width:40px;" class="rounded-circle" title="<?php echo $_SESSION["id"]; ?>" >
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-              <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="logout.php">Sair da conta</a></li>
-            </ul>
-          </div>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <a href="index.php" ><img src="imghef/hefcinelogo2.png" class="logo" alt="HEFCINE "></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" id="underline" href="index.php"  style="color: white; padding-left: 25px;">Página Inicial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="underline" href="ListaFilme.php" style="color: white">Filmes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="underline" href="ListaSerie.php"  style="color: white">Séries</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+      <div class="dropdown dropstart">
+          <a class="navbar-brand dropdown-toggle" href="#" data-bs-toggle="dropdown" style="padding-left: 20px;">
+              <img src="imghef/suspeito.png" alt="Perfil" style="width:40px;" class="rounded-circle" title="<?php echo $_SESSION["id"]; ?>" >
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+              <li><a class="dropdown-item" href="logout.php">Sair da conta</a></li>
+          </ul>
+      </div>
+    </div>
+  </nav>
 
     <!-- Conteúdo do site--> 
     <div class="container" style="background-color: #e5edf0; padding-bottom: 300px; padding-top: 40px; padding-left: 40px;">
@@ -167,7 +152,7 @@
       <!--Exibir comentarios--> 
       <?php
         ob_start();
-          include_once('config.php');
+          
           // ajustando a instruçăo select para ordenar por produto
           $query = mysqli_query($conexao,"select * from comentario where FilmeSerie_idFilme=$id order by created DESC;");
       

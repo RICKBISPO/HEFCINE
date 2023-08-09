@@ -4,10 +4,10 @@ session_start();
  
 // Verifique se o usuário já está logado, em caso afirmativo, redirecione-o para a página de boas-vindas
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    header("location: index.php");
     exit;
 }
-require_once "configlogin.php";
+require_once "php/configlogin.php";
  
 //Definir usuario e senha como vazio
 $username = $password = "";
@@ -61,7 +61,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
                             
-                            header("location: welcome.php");
+                            header("location: index.php");
                         } else{
                             $login_err = "Nome de usuário ou senha inválidos";
                         }
@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <head>
         <meta charset="UTF-8">
         <title>HEFcine - Login</title>
-        <link rel="stylesheet" href="stylelogs.css"> 
+        <link rel="stylesheet" href="css/stylelogs.css"> 
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <link rel="icon" type="image/x-icon" href="imghef/hefcinelogo.png">
     </head>
