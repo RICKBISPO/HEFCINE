@@ -1,7 +1,9 @@
 <?php
+
 include ('config.php');
 
 global $conexao;
+
 //funcao para verificar se esta logado
 function verificarLogado(){
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
@@ -25,7 +27,14 @@ function exibirFilmesSeries($tipo) {
         echo '<div class="col mb-4">';
         echo '<div class="card" style="width: 14rem">';
         echo '<div class="card-img-top text-center pt-2">';
-        echo "<a href='verFilme.php?id=$id' align='center'><img src='imghef/$foto' width='200px' height='300px'></a>";
+        if ($tipo == 'filme') 
+        {
+            echo "<a href='verFilme.php?id=$id' align='center'><img src='imghef/$foto' width='200px' height='300px'></a>"; 
+        } 
+        else 
+        {
+            echo "<a href='verSerie.php?id=$id' align='center'><img src='imghef/$foto' width='200px' height='300px'></a>";
+        }
         echo '<h5>' . $dados['nome'] . '</h5>';
         echo '</div>';
         echo '</div>';
@@ -48,7 +57,14 @@ function exibirAno($tipo, $ano) {
         echo '<div class="col mb-4">';
         echo '<div class="card" style="width: 14rem">';
         echo '<div class="card-img-top text-center pt-2">';
-        echo "<a href='verFilme.php?id=$id' align='center'><img src='imghef/$foto' width='200px' height='300px'></a>";
+        if ($tipo == 'filme') 
+        {
+            echo "<a href='verFilme.php?id=$id' align='center'><img src='imghef/$foto' width='200px' height='300px'></a>"; 
+        } 
+        else 
+        {
+            echo "<a href='verSerie.php?id=$id' align='center'><img src='imghef/$foto' width='200px' height='300px'></a>";
+        }
         echo '<h5>' . $dados['nome'] . '</h5>';
         echo '</div>';
         echo '</div>';
@@ -56,17 +72,6 @@ function exibirAno($tipo, $ano) {
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 function exibirComentarios($conexao, $id) {
 
@@ -85,8 +90,5 @@ function exibirComentarios($conexao, $id) {
         echo "</p></div>";
     }
 }
-
-
-
 
 ?>

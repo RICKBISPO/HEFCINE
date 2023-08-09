@@ -97,10 +97,10 @@
         </div>
       </div><br>
 
-      <!--TRAILER DA SERIE-->
+      <!--TRAILER DO FILME-->
       <div style="text-align: center;">
-        <h3 >TRAILER DA SÉRIE</h3>
-        <BR>
+        <h3>TRAILER DO FILME</h3>
+        <br>
         <iframe width="1000" height="600"  src="<?php echo $dados['trailer']?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div><br><br><br>
       
